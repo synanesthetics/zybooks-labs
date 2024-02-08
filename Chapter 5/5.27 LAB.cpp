@@ -10,7 +10,7 @@ int main() {
     vector<int> jerseyNum;
     vector<int> ratingNum;
 
-    for (int i = 0; i < numInputs; i++) {
+    for (int i = 0; i < numInputs; i++) { // get init 5 players
         cout << "Enter player " << i + 1 << "'s jersey number:";
         cin >> input;
         jerseyNum.push_back(input);
@@ -22,14 +22,13 @@ int main() {
         cout << endl << endl;
     }
 
-    cout << "ROSTER" << endl;
-
+    cout << "ROSTER" << endl; // output roster 
     for (int i = 0; i < numInputs; i++) {
         cout << "Player " << i + 1 << " -- Jersey number: " << jerseyNum[i] << ", Rating: " << ratingNum[i] << endl; 
     }
     cout << endl;
 
-    do {
+    do { // menu loop
         cout << "MENU" << endl;
         cout << "a - Add player" << endl;
         cout << "d - Remove player" << endl;
@@ -42,9 +41,10 @@ int main() {
         cout << endl;
 
         cin >> menuInput;
+        tolower(menuInput);
 
         switch (menuInput) {
-            case 'a': 
+            case 'a': // add new player
                 cout << endl;
 
                 cout << "Enter a new player's jersey number:";
@@ -58,7 +58,7 @@ int main() {
                 cout << endl << endl;
 
                 break;
-            case 'd':
+            case 'd': // remove / delete player
 
                 cout << "Enter a jersey number:";
                 cin >> input;
@@ -71,12 +71,37 @@ int main() {
                 }
 
                 break;
-            case 'u':
+            case 'u': // update player rating
+                cout << "Enter a jersey number:";
+                cin >> input;
+                cout << endl;
+
+                for (int i = 0; i < jerseyNum.size(); i++) {
+                    if (jerseyNum[i] == input) {
+                        cout << "Enter a new rating for player:";
+                        cin >> input;
+                        cout << endl;
+                        ratingNum[i] = input;
+                    }
+                }
                 break;
-            case 'r':
+            case 'r': // above a rating
+                cout << "Enter a rating:";
+                cin >> input;
+                cout << endl << endl;
+
+                cout << "ABOVE " << input << endl;
+
+                for (int i = 0; i < jerseyNum.size(); i++) {
+                    if (ratingNum[i] > input) {
+                        cout << "Player " << i + 1 << " -- Jersey number: " << jerseyNum[i] << ", Rating: " << ratingNum[i] << endl;
+                    }
+                }
+
+                cout << endl;
+
                 break;
-            case 'o':
-                
+            case 'o': // output roster
                 cout << "ROSTER" << endl;
                 for (int i = 0; i < jerseyNum.size(); i++) {
                     cout << "Player " << i + 1 << " -- Jersey number: " << jerseyNum[i] << ", Rating: " << ratingNum[i] << endl; 
@@ -86,7 +111,7 @@ int main() {
                 break;
         }
     }
-    while (menuInput != 'q');
+    while (menuInput != 'q'); // quit menu if q
     
     return 0;
 }
