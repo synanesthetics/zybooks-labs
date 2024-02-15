@@ -1,3 +1,5 @@
+// 4.20 Remove all non-alphabetic characters
+
 #include <iostream>
 #include <string>
 using namespace std;

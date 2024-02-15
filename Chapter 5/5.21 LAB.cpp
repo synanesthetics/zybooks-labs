@@ -1,3 +1,5 @@
+// 5.21 Adjust list by normalizing 
+
 #include <iostream>
 #include <iomanip>
 #include <vector>

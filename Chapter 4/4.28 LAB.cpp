@@ -1,3 +1,5 @@
+// 4.28 Drawing a half arrow
+
 #include <iostream>
 using namespace std;
 

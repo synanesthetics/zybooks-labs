@@ -1,3 +1,5 @@
+// 4.16 Varied amount of input data
+
 #include <iostream>
 #include <iomanip>
 using namespace std;

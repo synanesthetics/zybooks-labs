@@ -1,3 +1,5 @@
+// 5.19 Middle item
+
 #include <iostream>
 #include <vector>
 using namespace std;

@@ -1,3 +1,5 @@
+// 4.18 Checker for integer string
+
 #include <iostream>
 #include <string>
 using namespace std;
