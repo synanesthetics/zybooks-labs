@@ -14,7 +14,7 @@ void PrintMenu() {
     cout << "q - Quit" << endl;
 }
 
-int GetNumOfNonWSCharacters(const string text) {
+int GetNumOfNonWSCharacters(const string& text) {
     
     int count = 0;
     
@@ -27,7 +27,7 @@ int GetNumOfNonWSCharacters(const string text) {
     return count;
 }
 
-int GetNumOfWords(const string text) {
+int GetNumOfWords(const string& text) {
     
     bool notspace;
     int words = 0;
@@ -53,24 +53,76 @@ int GetNumOfWords(const string text) {
     return words;
 }
 
-void ExecuteMenu(char option, string text, bool& quit) {
+int FindText(string phrase, const string& text) {
+    
+    int count = 0;
 
+    for (int i = 0; i < text.size(); i++) {
+        if (text[i] == phrase[0]) {
+            for (int j = 0; j < phrase.size(); j++) {
+                if (text[i+j] != phrase[j]) {
+                    break;
+                }
+                
+                if (j == phrase.size() - 1) {
+                    count++;
+                }
+            }
+        }
+    }
+
+    return count;
+}
+
+void ReplaceExclamation(string& text) {
+    for (int i = 0; i < text.size(); i++) {
+        if (text[i] == '!') {
+            text[i] = '.';
+        }
+    }
+}
+
+void ShortenSpace(string& text) {
+    for (int i = 0; i < text.size(); i++) {
+        if (isspace(text[i])) {
+            int j = 1;
+            cout << i << ": ";
+            while (isspace(text[i+j])) {
+                cout << j << " ";
+                text.erase(i+j, 1);
+                j++;
+            }
+            i -= j - 1;
+            cout << endl;
+        }
+    }
+}
+
+void ExecuteMenu(char option, string text) {
+
+    string phrase;
+    
     switch (option) {
-        case 'q':
-            quit = true;
-            return void();
-            break;
         case 'c':
-            cout << endl << "Number of non-whitespace characters: " << GetNumOfNonWSCharacters(text) << endl << endl;
+            cout << "Number of non-whitespace characters: " << GetNumOfNonWSCharacters(text);
             break;
         case 'w':
-            cout << endl << "Number of words: " << GetNumOfWords(text) << endl << endl;
+            cout << "Number of words: " << GetNumOfWords(text);
             break;
         case 'f':
+            cin.ignore();
+            cout << "Enter a word or phrase to be found:" << endl;
+            getline(cin, phrase);
+
+            cout << "\"" << phrase << "\" instances: " << FindText(phrase, text); 
             break;
         case 'r':
+            ReplaceExclamation(text);
+            cout << "Edited text: " << text;
             break;
         case 's':
+            ShortenSpace(text);
+            cout << "Edited text: " << text;
             break;
     }
 }
@@ -92,7 +144,14 @@ int main() {
         cout << endl;
         cout << "Choose an option:" << endl;
         cin >> usrOpt;
-        ExecuteMenu(usrOpt, usrInput, quit);
+        if (usrOpt != 'q') {
+            cout << endl;
+            ExecuteMenu(usrOpt, usrInput);
+            cout << endl << endl;
+        }
+        else {
+            quit = true;
+        }
     }
 
     return 0;
