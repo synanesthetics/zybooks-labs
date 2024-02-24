@@ -1,9 +1,9 @@
 #include "Artwork.h"
 #include <iostream>
 
-// TODO: Define default constructor
+
 Artwork::Artwork() {
-    title = "Unknown";
+    title = "unknown";
     yearCreated = -1;
 }
 
@@ -22,7 +22,6 @@ int Artwork::GetYearCreated() {
 }
 
 void Artwork::PrintInfo() {
-    
+    artist.PrintInfo();
+    cout << "Title: " << title << ", " << yearCreated << endl; 
 }
-// TODO: Define PrintInfo() function
-//       Call the PrintInfo() function in the Artist class to print an artist's information  

@@ -4,7 +4,7 @@
 using namespace std;
 
 Artist::Artist() {
-    artistName = "Unknown";
+    artistName = "unknown";
     birthYear = -1;
     deathYear = -1;
 }
@@ -29,12 +29,18 @@ int Artist::GetDeathYear() const {
 }
 
 void Artist::PrintInfo() const {
+
+    cout << "Artist: " << artistName;
+
     if (birthYear != -1) {
         if (deathYear != -1) {
-            cout << "Artist: " << artistName << " (" << birthYear << " to " << deathYear << ")" << endl;
+            cout << " (" << birthYear << " to " << deathYear << ")" << endl;
         }
         else {
-            cout << "Artist: " << artistName << " (" << birthYear << " to present)" << endl;
+            cout << " (" << birthYear << " to present)" << endl;
         }
+    }
+    else {
+        cout << " (unknown)" << endl;
     }
 }
